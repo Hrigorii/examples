@@ -1,0 +1,258 @@
+*{
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
+	box-sizing: border-box;
+	font-family: 'Inter', sans-serif;
+	color: hsl(236, 13%, 42%);
+}
+*li{
+	list-style: none;
+}
+.lock{
+	overflow: hidden;
+}
+
+p{
+	font-size: 15px;
+	line-height: 1.5;
+}
+
+.wrapper{
+	max-width: 1110px;
+	margin: 90px auto;
+	padding: 10px;	
+}
+
+.header{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 55px;
+	
+	.menu{
+		opacity: 0;
+		visibility: hidden;
+		width: 40px;
+		height: 40px;
+		background-image: url('./img/icon-menu.svg');
+		background-repeat: no-repeat;
+		transition: all 0.4s ease;
+		&.active{
+			background-image: url('./img/icon-menu-close.svg');
+		}
+		&:hover{
+			cursor: pointer;
+		}
+	}
+	.nav{				
+		display: flex;
+		align-items: center;
+		&__ul {
+			display: flex;
+			justify-content: space-between;
+			column-gap: 40px;			
+		}		
+		&__li a:hover{
+			color: hsl(5, 85%, 63%);
+		}
+	}
+}
+
+.info{
+	display: flex;	
+	margin-bottom: 73px;
+	column-gap: 30px;
+}
+
+.main-info{
+	display: flex;
+	flex-wrap: wrap;
+	max-width: 730px;	
+	row-gap: 36px;
+	&__img{
+		width: 100%;
+		img{
+			height: 100%;
+			object-fit: cover;
+		}
+	}
+	&__txt{		
+		width: 50%;
+	}
+	h1{
+		font-size: 50px;
+		font-weight: 800;
+		color: hsl(240, 100%, 5%);
+	}	
+
+	.responsive {
+		max-width: 100%;
+		height: auto;
+  }
+	
+	&__button{		
+		padding: 20px 30px;
+		margin-top: 40px;
+		color: hsl(36, 100%, 99%);
+		border: none;
+		text-transform: uppercase;
+		background-color: hsl(5, 85%, 63%);
+		font-weight: 700;
+		cursor: pointer;
+		&:hover{
+			background-color: hsl(240, 100%, 5%);
+			color:hsl(36, 100%, 99%);
+		}
+	}
+}
+
+.side-info{
+	padding: 38px 24px 0px 24px;	
+	background-color: hsl(240, 100%, 5%);
+	font-size: 20px;
+	div:nth-child(3){
+		border-top: 1px solid hsl(233, 8%, 79%);
+		border-bottom: 1px solid hsl(233, 8%, 79%);
+	}
+	p{
+		color: hsl(233, 8%, 79%);
+	}
+	h2{
+		color: hsl(35, 77%, 62%);
+		font-size: 29px;		
+	}
+	&__item{
+
+		padding: 37px 0px;
+		a{
+			color:hsl(36, 100%, 99%);
+			font-size: 16px;
+			font-weight: 600;
+			display: block;
+			margin: 0px 0px 16px 0px;
+		}
+		a:hover{
+			color: hsl(35, 77%, 62%);
+		}
+	}		
+}
+
+
+.items{
+	display: flex;
+	justify-content: space-between;
+	column-gap: 50px;
+	.item{
+		flex:  1 33%;
+		display: flex;
+		column-gap: 20px;
+		&__text{
+			h3{
+				color: hsl(233, 8%, 79%);
+				font-size: 30px;
+				margin-bottom: 15px;
+			}
+			h4{
+				color: hsl(240, 100%, 5%);
+				margin-bottom: 15px;
+			}
+		}
+	}
+}
+@mixin active{
+	opacity: 1;
+	visibility: visible;
+	scale: 1;
+}
+
+.cover{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	opacity: 0;
+	visibility: hidden;
+	background-color: rgba(0, 0, 0, 0.5);
+	overflow-y: auto;
+	overflow-x: hidden;
+	z-index: 5;	
+	transition: all 0.8s ease 0s;	
+	&.active{
+		@include active;		
+	}	
+}
+
+@media(max-width: 780px){	
+	.main-info{
+		flex-direction: column;
+		margin-bottom: 60px;
+		&__txt{		
+			width: 100%;
+		}
+	}
+	.items{
+		flex-wrap: wrap;
+		row-gap: 30px;
+	}
+
+	}
+	
+
+@media (max-width: 375px){
+	.wrapper{		
+		position: relative;
+		margin: 30px auto;		
+		padding: 10px;	
+	}
+	.header {
+		margin-bottom: 32px;				
+		.menu{
+			position: relative;			
+			opacity: 1;
+			visibility: visible;
+			z-index: 10;
+		}
+		.nav{
+			position: absolute;
+			right: 0;
+			width: 256px;
+			height: 100%;			
+			padding: 26px;
+			background-color: hsl(36, 100%, 99%);			
+			transform: translateX(100%) scale(0);
+			visibility: hidden;
+			opacity: 0;
+			z-index: 6;
+			transition: all 0.3s ease;
+			&__ul{
+				margin-top: 445px;
+				flex-direction: column;
+				row-gap: 34px;
+			}
+			&.active{
+				@include active;
+				transform: translateX(0%) scale(1);
+			}			
+		}
+	}
+	.info{
+		flex-wrap: wrap;
+		}
+	.main-info{
+		flex-direction: column;
+		margin-bottom: 65px;
+		row-gap: 30px;		
+		&__txt{
+			width: 100%;
+		}
+
+	}
+		.items{
+		flex-direction: column;
+		row-gap: 30px;
+		padding: 10px;
+	}
+	
+}
